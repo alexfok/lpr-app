@@ -3,29 +3,35 @@
 {% block content %}
 <div class="container">
   <h1 class="my-4">LPR Application</h1>
-  {% if groceries|length < 1 %}
-  <p>There is nothing to buy for now.</p>
+  {% if car_pictures|length < 1 %}
+  <p>No car_pictures to show for now.</p>
   {% else %}
   <table class="table">
     <thead>
       <tr>
         <th>Pictures</th>
         <th>Added</th>
+        <th>Original image</th>
+        <th>Image parts for OCR</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-      {% for grocery in groceries %}
+      {% for car_picture in car_pictures %}
       <tr>
-        <td><a href="/update/{{ grocery.id }}">{{ grocery.name }}</a></td>
-        <td>{{ grocery.created_at.date() }}</td>
-        <td class="text-right"><a class="btn btn-danger btn-sm" href="/delete/{{ grocery.id }}" role="button">Delete</a></td>
+        <td><a href="/update/{{ car_picture.id }}">{{ car_picture.name }}</a></td>
+        <td>{{ car_picture.created_at.date() }}</td>
+        <td> <img src="{{ car_picture.large_picture }}" class="large_picture" alt="original image" > </td>
+        {% for small_picture in car_picture.small_pictures %}
+          <td> <img src="{{ small_picture }}" class="small_picture" alt="small image" > </td>
+        {% endfor %}
+          <td class="text-right"><a class="btn btn-danger btn-sm" href="/delete/{{ car_picture.id }}" role="button">Delete</a></td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
   {% endif %}
 
-  {% include 'snippets/form.html' %}
+  {% include 'snippets/form1.html' %}
 </div>
 {% endblock content %}

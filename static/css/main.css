@@ -1,3 +1,13 @@
 body {
   background: lightsteelblue;
 }
+
+.large_picture {
+  max-width: 80%;
+  max-height: 80%;
+}
+
+.small_picture {
+  max-width: 80%;
+  max-height: 80%;
+}
