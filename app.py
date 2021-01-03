@@ -7,6 +7,8 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.secret_key = "secret key"
+#app = Flask(__name__, static_folder=os.path.join(os.path.pardir, 'web', 'static'))
+
 app.config['MAX_CONTENT_LENGTH'] = 8 * 1024 * 1024 # 8 MB
 
 PICTURES_FOLDER = os.path.join('static', 'pictures_photo')
@@ -17,10 +19,16 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test_pictures.db'
 db = SQLAlchemy(app)
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+# DATE_FORMAT is the date format in the files. Watch out - changing this requires server cleanup
+DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+def datetimeformat(value, format='%H:%M / %d-%m-%Y'):
+    datetime.now().strftime(DATE_FORMAT)
+    return value.strftime(format)
+    
 class Pictures(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
