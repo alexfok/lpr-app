@@ -9,8 +9,10 @@
   <table class="table">
     <thead>
       <tr>
+        <th>Actions</th>
         <th>Pictures</th>
         <th>Added</th>
+        <th>Recognized text</th>
         <th>Original image</th>
         <th>Image parts for OCR</th>
         <th></th>
@@ -19,13 +21,14 @@
     <tbody>
       {% for car_picture in car_pictures %}
       <tr>
+        <td class="text-right"><a class="btn btn-danger btn-sm" href="/delete/{{ car_picture.id }}" role="button">Delete</a></td>
         <td><a href="/update/{{ car_picture.id }}">{{ car_picture.name }}</a></td>
         <td>{{ car_picture.created_at.date() }}</td>
-        <td> <img src="{{ car_picture.large_picture }}" class="large_picture" alt="original image" > </td>
+        <td>{{ car_picture.recognized_txt }}</td>
+        <td> <img src="{{ car_picture.picture_path }}" class="large_picture" alt="original image" > </td>
         {% for small_picture in car_picture.small_pictures %}
           <td> <img src="{{ small_picture }}" class="small_picture" alt="small image" > </td>
         {% endfor %}
-          <td class="text-right"><a class="btn btn-danger btn-sm" href="/delete/{{ car_picture.id }}" role="button">Delete</a></td>
       </tr>
       {% endfor %}
     </tbody>

@@ -8,13 +8,14 @@
 >>> Grocery.query.all()
 [<Grocery 'milk'>]
 
-from app import db
+from components.config import db
+from components.lpr_eng import PictureWrapper
 db.create_all()
-from app import Pictures
-obj = Pictures(name='milk')
+obj = PictureWrapper(name = 'rear_view_lp', picture_path = '')
+new_picture = PictureWrapper(name = 'rear_view_lp', picture_path = '', recognized_txt = '', small_pictures = [])
 db.session.add(obj)
 db.session.commit()
-Pictures.query.all()
+PictureWrapper.query.all()
 
         <td> <img src="{{url_for('static',filename = 'pictures_photo/rear_view_lp.jpg')}}" class="large_picture" alt="test image" > </td>
         <td> <img src="{{url_for(test_image)}}" class="large_picture" alt="test image" > </td>
