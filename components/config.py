@@ -25,7 +25,9 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 logger = init_logger()
-import os
+# Nasty hack for Heroku environment due to Windows shell bug - unable to perform
+#   heroku config:set TESSDATA_PREFIX=/app/.apt/usr/share/tesseract-ocr/4.00/tessdata
+
 if 'heroku' in os.environ.get('PATH'):
     os.environ['TESSDATA_PREFIX'] = '/app/.apt/usr/share/tesseract-ocr/4.00/tessdata'
 logger.debug("config:TESSDATA_PREFIX '{}'\n\n PATH:\n '{}'".format(os.environ.get('TESSDATA_PREFIX'), os.environ.get('PATH')))
