@@ -343,7 +343,7 @@ def license_plate_recognition(img_path: str, new_size: tuple, blurring_method: C
     str
        Text recognized on the image
     """
-    logger.debug("license_plate_recognition: img_path: '{}' ".format(img_path))
+    logger.debug("lpr: img_path: '{}' ".format(img_path))
     image = cv2.imread(img_path)
     binary_img = preprocess(
         image,
@@ -354,32 +354,32 @@ def license_plate_recognition(img_path: str, new_size: tuple, blurring_method: C
     recognized_txt = 'None'
     small_pictures = []
     plate_cnts = plate_contours(binary_img)
-    logger.debug("license_plate_recognition: plate_contours(binary_img) ok img_path: '{}' ".format(img_path))
+    logger.debug("lpr: plate_contours(binary_img) ok img_path: '{}' ".format(img_path))
     if len(plate_cnts) == 0:
-        logger.debug("license_plate_recognition: len(plate_cnts) == 0, return img_path: '{}' ".format(img_path))
+        logger.debug("lpr: len(plate_cnts) == 0, return img_path: '{}' ".format(img_path))
         return (recognized_txt, small_pictures)
     i=0
     for c in plate_cnts:
-        logger.debug("license_plate_recognition: prepare_ocr(cropped) ok img_path: '{}' ".format(img_path))
         cropped = crop_image(image, c)
-        logger.debug("license_plate_recognition: prepare_ocr(cropped) ok img_path: '{}' ".format(img_path))
+        logger.debug("lpr: crop_image ok img_path: '{}' ".format(img_path))
         cropped = prepare_ocr(cropped)
+        logger.debug("lpr: prepare_ocr(cropped) ok img_path: '{}' ".format(img_path))
 
-        logger.debug("license_plate_recognition: prepare_ocr(cropped) ok img_path: '{}' ".format(img_path))
         picture_dir_name = os.path.dirname(img_path)
         small_picture_name = os.path.basename(img_path)
         small_picture_name_no_ext = os.path.splitext(small_picture_name)[0]
         picture_file_name = small_picture_name_no_ext + "_" + str(i)
-        logger.debug("license_plate_recognition: picture_dir_name: '{}' picture_file_name: '{}'".format(picture_dir_name, picture_file_name))
         img_path = utils.save_image_plt(
             picture_dir_name,
             picture_file_name,
             cropped
         )
-        logger.debug("license_plate_recognition: img_path: '{}'".format(img_path))
+        logger.debug("lpr: save_image_plt picture_dir_name: '{}' picture_file_name: '{}'".format(picture_dir_name, picture_file_name))
         small_pictures.append(img_path)
         i=i+1
         recognized_txt = utils.remove_special_chars(ocr(img_path, config_str))
+        logger.debug("lpr: ocr(img_path, config_str) ok: '{}' '{}'".format(img_path, config_str))
         if len(recognized_txt) > 0:
+            logger.debug("lpr: ok: (recognized_txt, small_pictures) '{}' '{}'".format(recognized_txt, small_pictures))
             return (recognized_txt, small_pictures)
     return (recognized_txt, small_pictures)
