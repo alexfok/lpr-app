@@ -25,6 +25,8 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 logger = init_logger()
+import os
+logger.debug("config:TESSDATA_PREFIX '{}'\n\n PATH:\n '{}'".format(os.environ.get('TESSDATA_PREFIX'), os.environ.get('PATH')))
 
 def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
