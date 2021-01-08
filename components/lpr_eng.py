@@ -9,7 +9,7 @@ import sys, os
 from components import lpr_utils
 from components.config import db, app, logger, allowed_file, datetimeformat, PICTURES_FOLDER, ALLOWED_EXTENSIONS, DATE_FORMAT
 
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+#pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 class PictureWrapper(db.Model):
     id = db.Column(db.Integer, primary_key=True)
