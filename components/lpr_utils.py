@@ -351,16 +351,21 @@ def license_plate_recognition(img_path: str, new_size: tuple, blurring_method: C
         blurring_method,
         binarization_method
     )
-    plate_cnts = plate_contours(binary_img)
-    if len(plate_cnts) == 0:
-        return ''
-    i=0
-    recognized_txt = ''
+    recognized_txt = 'None'
     small_pictures = []
+    plate_cnts = plate_contours(binary_img)
+    logger.debug("license_plate_recognition: plate_contours(binary_img) ok img_path: '{}' ".format(img_path))
+    if len(plate_cnts) == 0:
+        logger.debug("license_plate_recognition: len(plate_cnts) == 0, return img_path: '{}' ".format(img_path))
+        return (recognized_txt, small_pictures)
+    i=0
     for c in plate_cnts:
+        logger.debug("license_plate_recognition: prepare_ocr(cropped) ok img_path: '{}' ".format(img_path))
         cropped = crop_image(image, c)
+        logger.debug("license_plate_recognition: prepare_ocr(cropped) ok img_path: '{}' ".format(img_path))
         cropped = prepare_ocr(cropped)
 
+        logger.debug("license_plate_recognition: prepare_ocr(cropped) ok img_path: '{}' ".format(img_path))
         picture_dir_name = os.path.dirname(img_path)
         small_picture_name = os.path.basename(img_path)
         small_picture_name_no_ext = os.path.splitext(small_picture_name)[0]
