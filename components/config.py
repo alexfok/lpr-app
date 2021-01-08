@@ -26,6 +26,8 @@ DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 logger = init_logger()
 import os
+if 'heroku' in os.environ.get('PATH')):
+    os.environ['TESSDATA_PREFIX'] = '/app/.apt/usr/share/tesseract-ocr/4.00/tessdata'
 logger.debug("config:TESSDATA_PREFIX '{}'\n\n PATH:\n '{}'".format(os.environ.get('TESSDATA_PREFIX'), os.environ.get('PATH')))
 
 def allowed_file(filename):
