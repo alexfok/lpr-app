@@ -318,14 +318,13 @@ def ocr(img_path: str, config_str: str) -> str:
 #    tessdata_dir_config = r'--tessdata-dir "/c/work/Enigmatos/Projects/lpr-poc/results"'
 #    print("tessdata_dir_config: {}",tessdata_dir_config)
 #    return pytesseract.image_to_string(Image.open(img_path), config=tessdata_dir_config)
-    ttt = '111'
+    recognized_txt = ''
     try:
-        ttt = pytesseract.image_to_string(Image.open(img_path), config = config_str)
-        print('111')
+        recognized_txt = pytesseract.image_to_string(Image.open(img_path), config = config_str)
     except Exception as e:
-        print(e)
-    print('ttt: {}',ttt)
-    return ttt
+        logger.debug("ocr: error: e '{}'".format(e))
+    logger.debug("ocr: recognized_txt '{}'".format(recognized_txt))
+    return recognized_txt
 #    return pytesseract.image_to_string(Image.open(img_path), config = config_str)
 
 
