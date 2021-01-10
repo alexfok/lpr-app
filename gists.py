@@ -20,3 +20,4 @@ PictureWrapper.query.all()
         <td> <img src="{{url_for('static',filename = 'pictures_photo/rear_view_lp.jpg')}}" class="large_picture" alt="test image" > </td>
         <td> <img src="{{url_for(test_image)}}" class="large_picture" alt="test image" > </td>
         <td> <img src="{{ test_image }}" class="large_picture" alt="test image" > </td>
+'C:\Program Files\Tesseract-OCR\tesseract.exe' --psm 13 images/rear_view_lp.jpg ttt

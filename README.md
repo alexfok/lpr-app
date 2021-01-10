@@ -9,8 +9,8 @@
  Check how to get uploaded data and updated DB from Heroku
  Run image processing and create OCR parts
  Run and present OCR results
- # TODO:
  How to deploy tesseract package on heroku?
+ # TODO:
  Improve overall page design - table columns should be absolute, delete button is shifted
  db location move to static
  Check if image exists on upload
@@ -18,3 +18,4 @@
  Add h:m:s to timestamp
  Add rerun image engine button (and update timestamp)
  Improve design of upload form
+ Play with image processing

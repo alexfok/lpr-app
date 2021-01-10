@@ -6,6 +6,7 @@
   {% if car_pictures|length < 1 %}
   <p>No car_pictures to show for now.</p>
   {% else %}
+  {% include 'snippets/form1.html' %}
   <table class="table">
     <thead>
       <tr>
@@ -35,6 +36,5 @@
   </table>
   {% endif %}
 
-  {% include 'snippets/form1.html' %}
 </div>
 {% endblock content %}

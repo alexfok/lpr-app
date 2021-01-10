@@ -27,10 +27,16 @@ DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 logger = init_logger()
 # Nasty hack for Heroku environment due to Windows shell bug - unable to perform
 #   heroku config:set TESSDATA_PREFIX=/app/.apt/usr/share/tesseract-ocr/4.00/tessdata
-
-if 'heroku' in os.environ.get('PATH'):
+#if 'heroku' in os.environ.get('PATH'):
+if 'DYNO' in os.environ:
     os.environ['TESSDATA_PREFIX'] = '/app/.apt/usr/share/tesseract-ocr/4.00/tessdata'
+else:
+    os.environ['TESSDATA_PREFIX'] = r"C:\Program Files\Tesseract-OCR\tessdata"
+#os.environ['TESSDATA_PREFIX'] = r'C:\Program Files\Tesseract-OCR\tessdata'
+#    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 logger.debug("config:TESSDATA_PREFIX '{}'\n\n PATH:\n '{}'".format(os.environ.get('TESSDATA_PREFIX'), os.environ.get('PATH')))
+#
+#     os.environ['TESSDATA_PREFIX'] = 'C:\Program Files\Tesseract-OCR\tessdata'
 
 def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS

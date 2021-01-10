@@ -318,7 +318,15 @@ def ocr(img_path: str, config_str: str) -> str:
 #    tessdata_dir_config = r'--tessdata-dir "/c/work/Enigmatos/Projects/lpr-poc/results"'
 #    print("tessdata_dir_config: {}",tessdata_dir_config)
 #    return pytesseract.image_to_string(Image.open(img_path), config=tessdata_dir_config)
-    return pytesseract.image_to_string(Image.open(img_path), config = config_str)
+    ttt = '111'
+    try:
+        ttt = pytesseract.image_to_string(Image.open(img_path), config = config_str)
+        print('111')
+    except Exception as e:
+        print(e)
+    print('ttt: {}',ttt)
+    return ttt
+#    return pytesseract.image_to_string(Image.open(img_path), config = config_str)
 
 
 def license_plate_recognition(img_path: str, new_size: tuple, blurring_method: Callable, binarization_method: Callable, config_str: str="") -> str:

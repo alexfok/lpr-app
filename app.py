@@ -19,12 +19,12 @@ def index():
             # New picture upload
             if 'file' not in request.files:
                 flash('No file part')
-                logger.debug("No file part")
+                logger.error("No file part")
                 return redirect(request.url)
             file = request.files['file']
             if file.filename == '':
                 flash('No image selected for uploading')
-                logger.debug("No image selected for uploading")
+                logger.error("No image selected for uploading")
                 return redirect(request.url)
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
