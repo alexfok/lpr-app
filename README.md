@@ -19,3 +19,4 @@
  Add rerun image engine button (and update timestamp)
  Improve design of upload form
  Play with image processing
+ Responsive features - mobile device handling

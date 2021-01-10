@@ -53,7 +53,7 @@ def index():
     else:
         # GET - render existing pictures
         logger.debug("GET request.url:'{}'".format(request.url))
-        car_pictures = PictureWrapper.query.order_by(PictureWrapper.created_at).all()
+        car_pictures = PictureWrapper.query.order_by(PictureWrapper.created_at.desc()).all()
         # TODO: When small_pictures_list will be kept in DB, the below code should be cleaned
         # extract small_pictures from db and convert it to list as following:
         # a=car_picture.small_pictures.strip('[]') 

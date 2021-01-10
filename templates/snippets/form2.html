@@ -1,8 +1,16 @@
-<form method="post" action="/" enctype="multipart/form-data">
-    <div class="form-group">
-      <label for="exampleFormControlFile1">Example file input</label>
-      <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1">
+<form method="post" action="/" enctype="multipart/form-data" class="form-control-file">
+  <div class="row mb-1">
+    <div class="col">
+      <div class="form-group">
+        <label for="formControlFile">Upload car picture</label>
+        <input type="file" name="file" class="form-control-file" id="formControlFile" accept="image/png, image/jpeg, image/jpg, image/gif">
+      </div>
+      </div>
+    <div class="col">
+      <div class="form-outline">
+        <button type="submit" value="Submit" class="btn btn-primary" id="submitBtn">Submit</button>
+      </div>
     </div>
-    <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+  </div>
 </form>
-  
+

@@ -2,11 +2,15 @@
 
 {% block content %}
 <div class="container">
-  <h1 class="my-4">LPR Application</h1>
-  {% if car_pictures|length < 1 %}
+  <div class="row">
+    <h1 class="my-4">LPR Application</h1>
+  </div>
+  <div class="row">
+    {% if car_pictures|length < 1 %}
   <p>No car_pictures to show for now.</p>
   {% else %}
-  {% include 'snippets/form1.html' %}
+  {% include 'snippets/form2.html' %}
+  </div>
   <table class="table">
     <thead>
       <tr>
